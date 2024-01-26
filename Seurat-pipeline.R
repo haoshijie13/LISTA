@@ -7,10 +7,10 @@ library(Matrix)
 # library("future")
 # plan("multiprocess", workers = 30)
 options(future.globals.maxSize=100000000000)
-args=commandArgs(T)
+args=commandArgs(T) # input the gem file as first parameter.
 base=basename(args[1])
 dir=dirname(args[1])
-prefix=sub(".txt","",base)
+prefix=sub(".txt","",base) 
 
 read<-function(mat,bin){
         data<-fread(mat,header=T)
