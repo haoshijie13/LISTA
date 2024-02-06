@@ -25,8 +25,8 @@ if __name__ == '__main__':
         ex_matrix = pd.read_table(args[1], sep='\t', header=0, index_col=0).T
         print(ex_matrix)
         DATA_FOLDER="./"
-        RESOURCES_FOLDER="/hwfssz1/ST_MCHRI/P18Z10200N0350_tmp/PROJECT/MiguelLab/liver_zonation/SCENIC"
-        DATABASE_FOLDER="/hwfssz1/ST_MCHRI/P18Z10200N0350_tmp/PROJECT/MiguelLab/liver_zonation/SCENIC/motif"
+        RESOURCES_FOLDER="liver_zonation/SCENIC"
+        DATABASE_FOLDER="SCENIC/motif"
 #       SCHEDULER="123.122.8.24:8786"
         DATABASES_GLOB = os.path.join(DATABASE_FOLDER, "mm10_*.mc9nr.feather")
         MOTIF_ANNOTATIONS_FNAME = os.path.join(RESOURCES_FOLDER, "motifs-v9-nr.mgi-m0.001-o0.0.tbl")
