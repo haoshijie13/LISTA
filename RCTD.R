@@ -1,7 +1,7 @@
 args<-commandArgs(T)
 library(data.table)
 load(args[1])
-sc=readRDS("/hwfssz1/ST_SUPERCELLS/P18Z10200N0350/99.lyw/liver/08.download/Cell_data/GSE192742.CD45.rds")
+sc=readRDS("GSE192742.CD45.rds")
 #sc=subset(sc,subset=annotation_lyw!="Erythrocyte")
 library(Seurat)
 #exp_spatial=FetchData(SeuObj,vars=rownames(SeuObj@assays$RNA@counts),slot="counts")
