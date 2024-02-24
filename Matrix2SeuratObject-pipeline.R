@@ -7,14 +7,14 @@ library(Matrix)
 # library("future")
 # plan("multiprocess", workers = 30)
 options(future.globals.maxSize=100000000000)
-args=commandArgs(T) # input the gem file as first parameter.
+args=commandArgs(T)         # input the matrix file as first parameter which contain at least four column: geneID, x, y, and MIDCount (UMI).
 base=basename(args[1])
 dir=dirname(args[1])
 prefix=sub(".txt","",base) 
 
 read<-function(mat,bin){
-        data<-fread(mat,header=T)
-        data$cellID<-paste(as.character(round(data$x/bin, digits = 0)),"_",as.character(round(data$y/bin, digits = 0)),sep="")
+        data<-fread(mat,header=T)        # fread is a paralleled processing command
+        data$cellID<-paste(as.character(round(data$x/bin, digits = 0)),"_",as.character(round(data$y/bin, digits = 0)),sep="")        # Aggregated DNBs in each bin spot 
         gene=unique(data$geneID)
         cell=unique(data$cellID)
         gene_idx=c(1:length(gene))
@@ -23,7 +23,7 @@ read<-function(mat,bin){
         names(cell_idx)=cell
         print(head(gene_idx[data$geneID]))
         data=as.data.frame(data)
-        mat=sparseMatrix(i=gene_idx[data$geneID],j=cell_idx[data$cellID],x=data[,4])
+        mat=sparseMatrix(i=gene_idx[data$geneID],j=cell_idx[data$cellID],x=data[,4])        # Create SparseMatrix from the matrix file
         rownames(mat)=gene
         colnames(mat)=cell
         return(mat)
@@ -68,6 +68,6 @@ analyze <- function(mat,bin){
 
 bins=c(100,50)
 for(bin in bins){
-        mat<-read(args[1],bin)
+        mat<-read(args[1],bin) # You can choose the bin size which you prefer
         analyze(mat,bin)
 }
