@@ -1,5 +1,5 @@
 # LISTA
-Codes used in LISTA project.
+## Codes used in LISTA project.
 
 **Step 1:** Run Matrix2SeuratObject-pipeline.R to create Seurat objects. You can run SAW analysis pipeline to create matrix or download the processed matrix from our database: https://db.cngb.org/stomics/lista/download/
 
