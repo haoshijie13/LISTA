@@ -5,6 +5,11 @@ import pandas as pd
 import numpy as np
 import sys
 
+#######################################################################################################
+################## You can find a detailed tutorial from SCENIC offtial website.#######################
+#######################################################################################################
+
+
 args = sys.argv
 print(args[1])
 
@@ -22,8 +27,11 @@ import dask
 dask.config.set(num_workers=80)
 if __name__ == '__main__':
         print(os.getcwd())
-        ex_matrix = pd.read_table(args[1], sep='\t', header=0, index_col=0).T
+        ex_matrix = pd.read_table(args[1], sep='\t', header=0, index_col=0).T  # Read cell × gene matrix.
         print(ex_matrix)
+        ##################################################################
+        ########### We used mm10 database provided by SCENIC #############
+        ##################################################################
         DATA_FOLDER="./"
         RESOURCES_FOLDER="liver_zonation/SCENIC"
         DATABASE_FOLDER="SCENIC/motif"
@@ -40,14 +48,14 @@ if __name__ == '__main__':
         print(REGULONS_FNAME)
         print(MOTIFS_FNAME)
 
-        tf_names = load_tf_names(MM_TFS_FNAME)
+        tf_names = load_tf_names(MM_TFS_FNAME)    # Load database.
         db_fnames = glob.glob(DATABASES_GLOB)
         def name(fname):
             return os.path.splitext(os.path.basename(fname))[0]
         dbs = [RankingDatabase(fname=fname, name=name(fname)) for fname in db_fnames]
 
         print(dbs)
-        adjancencies = grnboost2(expression_data=ex_matrix, tf_names=tf_names, verbose=True)
+        adjancencies = grnboost2(expression_data=ex_matrix, tf_names=tf_names, verbose=True)    # Calculate gene coexpression relationships.
         adjancencies.to_csv(ADJACENCIES_FNAME, index=False, sep='\t')
         modules = list(modules_from_adjacencies(adjancencies, ex_matrix))
         with open(MODULES_FNAME, 'wb') as f:
