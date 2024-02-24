@@ -7,4 +7,8 @@
 
 **Step 3:** Run Ligand_receptor_interaction_zonation_analysis.R to calculate interaction score of ligand & receptor pairs. The ligand receptor pairs used in our study was provided in the mouse_lr_pair.txt file. You can investigate all of them or a part.
 
+**Step 4:** Run run_scenic.py to calculate gene regulatory network. You can find a detailed tutorial from SCENIC offtial website: https://pyscenic.readthedocs.io/en/latest/
+
+**Step 5:** Run run_hotspot.py to calculate gene coexpression modules base on their expression pattern. You can find a detailed tutorial from Hotspot offtial website: https://yoseflab.github.io/Hotspot/
+
 ![image](https://github.com/haoshijie13/LISTA/assets/59014440/92db2bcd-39fd-4bbb-906c-ed2e4b0f0e5c)
