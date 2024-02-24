@@ -1,17 +1,13 @@
-pathway=read.table("all.kegg.pathway.list",sep="\t")
+pathway=read.table("all.kegg.pathway.list",sep="\t")            # Input gene lists of pathways.
 pathways=apply(as.matrix(pathway$V2),1,function(x){strsplit(x,split=",")[[1]]})
 names(pathways)=pathway$V1
-#load("mfuzz.Rdata")
-#res=apply(as.matrix(clust$membership[,c(2,3,4,5,10,11)]),1,function(x){any(x>0.5)})
-#zonated_gene=names(res[res])
-#zonated_gene=read.table("zonated.gene_GPC1.list")
-zonated_gene=read.table("zonated.gene_Halpern.list")
-zonated_gene=zonated_gene$V1
-exp=readRDS("layer_exp_change.rds")
+
+zonated_gene=read.table("zonated.gene_Halpern.list")            # Input zonation gene list
+zonated_gene=zonated_gene$V1 
+exp=readRDS("layer_exp_change.rds")                             # Input layer averaged gene expression
 zonated_gene=zonated_gene[zonated_gene %in% rownames(exp)]
 library(dplyr)
-#pvalues=lapply(pathways,function(x){1-phyper(length(x[x %in% zonated_gene]),length(zonated_gene),length(clust$cluster),length(x))})
-pvalues=lapply(pathways,function(x){1-phyper(length(x[x %in% zonated_gene]),length(zonated_gene),nrow(exp),length(x))})
+pvalues=lapply(pathways,function(x){1-phyper(length(x[x %in% zonated_gene]),length(zonated_gene),nrow(exp),length(x))})    # Hypergeometric test of genes of each pathway against zonation gene
 df=t(as.data.frame(pvalues))
 rownames(df)=names(pvalues)
 #write.table(df[df[,1]<0.05,],sep="\t",quote=F,file="pathway_phyper.list")
