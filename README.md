@@ -1,7 +1,7 @@
 # LISTA
 Codes used in LISTA project.
 
-**Step 1:** Run Matrix2SeuratObject-pipeline.R to create Seurat objects.
+**Step 1:** Run Matrix2SeuratObject-pipeline.R to create Seurat objects. You can run SAW analysis pipeline to create matrix or download the processed matrix from our database: https://db.cngb.org/stomics/lista/download/
 
 **Step 2:** Run cut_zonation_layer_and_pathway_module_score.R to split spots into 9 zonation layers. The pathway module score can be add simutaneously.
 
