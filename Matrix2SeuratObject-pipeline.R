@@ -37,6 +37,9 @@ analyze <- function(mat,bin){
         SeuObj[["percent.mt"]] <- PercentageFeatureSet(SeuObj, pattern = "^mt-|^MT-|^Mt-")
         #save(SeuObj,file=paste(dir,"/bin",bin,".Rdata",sep=""))
         #q()
+
+        # What below is Seurat recommend analysis pipeline
+        
         SeuObj <- NormalizeData(SeuObj, normalization.method = "LogNormalize", scale.factor = 10000)
         SeuObj <- FindVariableFeatures(SeuObj, selection.method = "vst", nfeatures = 2000)
         all.genes <- rownames(SeuObj)
@@ -68,6 +71,6 @@ analyze <- function(mat,bin){
 
 bins=c(100,50)
 for(bin in bins){
-        mat<-read(args[1],bin) # You can choose the bin size which you prefer
+        mat<-read(args[1],bin)         # You can choose the bin size which you prefer
         analyze(mat,bin)
 }
