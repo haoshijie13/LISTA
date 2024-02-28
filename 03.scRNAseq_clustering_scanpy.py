@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 import scanpy.external as sce
 
 
-adata = sc.read('./01.qc/PHx.combine.h5ad')
+
+adata = sc.read('./01.qc/PHx.combine.h5ad')     # Input adata file after quality control.
 
 adata.raw.var.index = pd.Index(adata.var['features'])
 adata.var.index = pd.Index(adata.var['features'])
@@ -26,14 +27,14 @@ bdata = adata[(adata.obs.n_genes_by_counts < 4000) &( adata.obs.n_genes_by_count
 sc.pl.violin(bdata, ['n_genes_by_counts', 'total_counts','pct_counts_mt'],
              jitter=0.4, multi_panel=True)
 
-sc.pp.highly_variable_genes(bdata, min_mean=0.0125, max_mean=3, min_disp=0.5)
+sc.pp.highly_variable_genes(bdata, min_mean=0.0125, max_mean=3, min_disp=0.5)    # Find highly variable genes.
 bdata = bdata[:, bdata.var.highly_variable]
-sc.pp.regress_out(bdata, ['total_counts', 'pct_counts_mt'], n_jobs = 50)
-sc.pp.scale(bdata, max_value=10)
-sc.tl.pca(bdata, svd_solver='arpack', use_highly_variable = True)
-sce.pp.harmony_integrate(bdata, key = 'Library', basis='X_pca', adjusted_basis='X_pca_harmony')
-sc.pp.neighbors(bdata, use_rep = 'X_pca_harmony', n_neighbors=10, n_pcs=40)
-sc.tl.umap(bdata)
+sc.pp.regress_out(bdata, ['total_counts', 'pct_counts_mt'], n_jobs = 50)        # Data normalization.
+sc.pp.scale(bdata, max_value=10)                                                # Data scaling.
+sc.tl.pca(bdata, svd_solver='arpack', use_highly_variable = True)               # Dimmesion reduction.
+sce.pp.harmony_integrate(bdata, key = 'Library', basis='X_pca', adjusted_basis='X_pca_harmony')              # Remove batch effect.
+sc.pp.neighbors(bdata, use_rep = 'X_pca_harmony', n_neighbors=10, n_pcs=40)                                  # Find cell neighbors.
+sc.tl.umap(bdata)                                                                                            # Embedded cells in a 2-D space.
 bdata.write_h5ad('PHx.combine_filter.h5ad')
 
 
