@@ -7,7 +7,7 @@
 
 **Step 3:** Run Ligand_receptor_interaction_zonation_analysis.R to calculate interaction score of ligand & receptor pairs. The ligand receptor pairs used in our study was provided in the mouse_lr_pair.txt file. You can investigate all of them or a part.
 
-**Step 4:** Run pathway_phyper.test.R to detect pathways enriched with zonation genes.
+**Step 4:** Run Find_zonation_pathway_phyper.test.R to detect pathways enriched with zonation genes.
 
 **Step 5:** Run run_RCTD.R to calculate cell type projection score of scRNAseq on Stereo-seq data. You can find a detailed tutorial from RCTD offtial website: https://github.com/dmcable/spacexr
 
