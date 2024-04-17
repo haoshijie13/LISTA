@@ -1,7 +1,9 @@
 # LISTA (LIver Spatio-Temporal Atlas)
 ## Codes used in LISTA project.
 
-### Xu, J., Guo, P., Hao, S. et al. A spatiotemporal atlas of mouse liver homeostasis and regeneration. Nat Genet (2024). https://doi.org/10.1038/s41588-024-01709-7
+### CITE: Xu, J., Guo, P., Hao, S. et al. A spatiotemporal atlas of mouse liver homeostasis and regeneration. Nat Genet (2024). https://doi.org/10.1038/s41588-024-01709-7
+
+### Database: https://db.cngb.org/stomics/lista/
 
 **Step 1:** Run 00.Stereo_seq_Matrix2SeuratObject-pipeline.R to create Seurat objects. You can run SAW analysis pipeline (https://github.com/STOmics/SAW) to create matrix or download the processed matrix from our database: https://db.cngb.org/stomics/lista/download/
 
