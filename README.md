@@ -5,6 +5,8 @@
 
 ### Database: https://db.cngb.org/stomics/lista/
 
+![image](https://github.com/haoshijie13/LISTA/assets/59014440/92db2bcd-39fd-4bbb-906c-ed2e4b0f0e5c)
+
 **Step 1:** Run 00.Stereo_seq_Matrix2SeuratObject-pipeline.R to create Seurat objects. You can run SAW analysis pipeline (https://github.com/STOmics/SAW) to create matrix or download the processed matrix from our database: https://db.cngb.org/stomics/lista/download/
 
 **Step 2:** Run 00.cut_zonation_layer_and_pathway_module_score.R to split spots into 9 zonation layers. The pathway module score can be add simutaneously. 
@@ -29,4 +31,3 @@
 
 **Step 12:** Run 03.scRNAseq_clustering_scanpy.py to cluster scRNAseq datasets.
 
-![image](https://github.com/haoshijie13/LISTA/assets/59014440/92db2bcd-39fd-4bbb-906c-ed2e4b0f0e5c)
